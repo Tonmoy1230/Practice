@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Page</title>
+</head>
+
+<body style="background-color: rgb(9, 51, 56);">
+
+        <a style="text-align: center; padding: 10px; color: white; text-decoration: none; display: flex;  margin-right: 40px ; margin-bottom: 10px; border: 1px solid wheat; width: 150px; height: 19px;" href="/profile">Ⓜ Profile</a>
+        <form action="/update/<%=post._id%>" method="post">
+            <textarea style="background: transparent; border: 1px solid white; color: aliceblue; resize: none;" placeholder="What do you have in mind?" name="comment" id="t" cols="50" rows="5"><%= post.comment%></textarea>
+            <input style="display: block; background-color: yellow;" type="submit" class="btn" value="Update" >
+        </form>
+        <hr>
+</body>
+
+</html>

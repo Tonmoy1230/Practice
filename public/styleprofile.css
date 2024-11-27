@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap');
+
+* {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+      }
+      
+body {
+    background-color: rgb(9, 51, 56);
+    padding: 20px;
+}
+h1{
+    color: aliceblue;
+    padding: 0;
+    margin: 0;
+}
+h4{
+    color: aliceblue;
+    padding: 0;
+    margin: 0;
+}
+textarea {
+    background: transparent;
+    resize: none;
+    color: aliceblue;
+    border: 1px solid rgb(250, 248, 245);
+}
+.btn{
+    display: block;
+
+}
+.mainposter{
+    margin-bottom: 30px;
+}
+.poster{
+    color: rgb(0, 0, 0);
+    background-color: rgba(240, 248, 255, 0.377);
+    width: 500px;
+    min-height: 80px;
+    border: 1px solid white;
+    margin: 0;
+    padding: 10px;
+    text-align:justify;
+    margin-bottom: 0;
+}
+a {
+    text-align: center;
+    padding: 10px;
+   color: white;
+   text-decoration: none;
+   display: flex;
+   margin-right: 40px ;
+   border: 1px solid wheat;
+   width: 500px;
+   height: 19px;
+}
+.username{
+    margin: 0;
+    color: aliceblue;
+}

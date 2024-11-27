@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload with Progress</title>
+    <style>
+        #progress-container {
+            width: 100%;
+            background: #f3f3f3;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            position: relative;
+            height: 20px;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #4caf50;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload with Progress Bar</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="photo" id="file-input" >
+        <button type="submit">Upload</button>
+    </form>
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+    <p id="status"></p>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        const fileInput = document.getElementById('file-input');
+        const progressBar = document.getElementById('progress-bar');
+        const statusText = document.getElementById('status');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file to upload');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('photo', file);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload', true);
+
+            // Track upload progress
+            xhr.upload.onprogress = (event) => {
+                if (event.lengthComputable) {
+                    const percentComplete = Math.round((event.loaded / event.total) * 100);
+                    progressBar.style.width = percentComplete + '%';
+                    statusText.textContent = `${percentComplete}% uploaded`;
+                }
+            };
+
+            // Handle upload completion
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    statusText.textContent = 'Upload complete!';
+                } else {
+                    statusText.textContent = 'Upload failed!';
+                }
+            };
+
+            xhr.onerror = () => {
+                statusText.textContent = 'An error occurred during the upload.';
+            };
+
+            // Send the request
+            xhr.send(formData);
+
+            // Reset progress bar after a while
+            xhr.onloadend = () => {
+                setTimeout(() => {
+                    progressBar.style.width = '0%';
+                    statusText.textContent = '';
+                }, 3000);
+            };
+        });
+    </script>
+</body>
+</html>

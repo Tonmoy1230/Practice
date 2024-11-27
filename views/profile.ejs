@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styleProfile.css">
+</head>
+
+<body>
+    <div class="main">
+        <a href="/logout">⛔Logout</a>
+        <a href="/newsfeed">🌐NewsFeed</a>
+        <div class="profile">
+            <h1><%= user.name %></h1>
+            <h4>@<%= user.username %></h4>
+        </div>
+        <form action="/post" method="post">
+            <textarea placeholder="What do you have in mind?" name="comment" id="t" cols="50" rows="5"></textarea>
+            <input type="submit" class="btn">
+        </form>
+        <hr>
+        <div id="mainPost">
+            <% user.post.reverse().forEach(function(post){ %>
+                <div class="mainposter">
+                    <p class="username">@<%= user.username %></p>
+                    <p class="poster">
+                     <%= post.comment %>
+                    </p>
+                    <a href="/like/<%= post._id %>"><%= post.likes.length%> <%= post.likes.indexOf(user._id) === -1 ? "Like" : "Unlike"%> </a>
+                    <a href="/edit/<%= post._id %>">edit</a>
+                </div>  
+                <% }) %> 
+        </div>
+    </div>
+</body>
+
+</html>
